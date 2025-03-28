@@ -9,7 +9,10 @@
 * Connect MongoDB using Mongoose
 * Define UI wireframes using Figma/pen & paper
 * Assign feature responsibilities to group members
-
+## Notes:
+* Split into major components
+* Assign major components to group members
+* Do this before turning in?
 
 # Milestone 2: User Authentication System
 ## Objectives:
@@ -20,7 +23,6 @@
 * Add password hashing using bcryptjs
 * Build backend routes for login
 * Build frontend login/signup forms with error handling
-
 
 # Milestone 3: Budget & Transaction Management
 ## Objectives:
@@ -37,9 +39,12 @@
     * List transactions in table format
     * Delete transactions
 * Allow filtering by category or date
+## Notes:
+* Something about multiple files? Ask Professor
 
-# Milestone 4: Budget Analytics & Visualization
- ## Objectives:
+
+# Milestone 4: Budget Analytics & Visualization
+## Objectives:
 * Show budget summaries and charts
  ## Action Points:
 * Calculate totals: income, expenses, balance
@@ -48,6 +53,8 @@
     * Pie chart (spending by category)
     * Bar/Line chart (expenses over time)
 * Display charts in a responsive dashboard
+## Notes:
+* Plan which charts to display and how and place it here
 
 # Milestone 5: UI Styling & User Experience
 ## Objectives:
@@ -56,6 +63,11 @@
 * Choose a design library (e.g., Material-UI, Tailwind CSS)
 * Style forms, buttons, tables, and charts
 * Make layout responsive for mobile and tablet views (optional)
+## Notes:
+* Pick a UI framework now
+* Start planning a design philosophy and place it here
+* Some interface to copy?
+
 
  
 # Milestone 6: Testing & Deployment
