@@ -11,8 +11,9 @@
 * Assign feature responsibilities to group members
 ## Notes:
 * Split into major components
+    * Today
 * Assign major components to group members
-* Do this before turning in?
+    * Friday, with Timeline
 
 # Milestone 2: User Authentication System
 ## Objectives:
@@ -40,7 +41,8 @@
     * Delete transactions
 * Allow filtering by category or date
 ## Notes:
-* Something about multiple files? Ask Professor
+* List Specific parameters to include in User DB files
+    * lists assets that we'll be working with
 
 
 # Milestone 4: Budget Analytics & Visualization
@@ -55,6 +57,7 @@
 * Display charts in a responsive dashboard
 ## Notes:
 * Plan which charts to display and how and place it here
+    * Main things/important things, categories
 
 # Milestone 5: UI Styling & User Experience
 ## Objectives:
@@ -67,8 +70,6 @@
 * Pick a UI framework now
 * Start planning a design philosophy and place it here
 * Some interface to copy?
-
-
  
 # Milestone 6: Testing & Deployment
 ## Objectives:
