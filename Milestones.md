@@ -1,8 +1,8 @@
 # Milestone 1: Project Setup & Planning
 ## Objectives:
-    * Set up the development environment
-    * Finalize feature list and roles
-    * Define database schema and project folder structure
+	* Set up the development environment
+	* Finalize feature list and roles
+	* Define database schema and project folder structure
 ## Action Points:
     •  Create shared GitHub repository
     •  Set up Express backend with basic routing
