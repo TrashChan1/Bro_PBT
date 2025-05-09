@@ -9,12 +9,6 @@
 * Connect MongoDB using Mongoose
 * Define UI wireframes using Figma/pen & paper
 * Assign feature responsibilities to group members
-## Notes:
-* Split into major components
-    * Today
-* Assign major components to group members
-    * Friday, with Timeline
-
 # Milestone 2: User Authentication System
 ## Objectives:
 * Implement login/signup system
@@ -40,11 +34,16 @@
     * List transactions in table format
     * Delete transactions
 * Allow filtering by category or date
-## Notes:
-* List Specific parameters to include in User DB files
-    * lists assets that we'll be working with
-
-
+* Model the database to track user info:
+	* User ID: Username, Email, Password
+	* Transactions: Money inflow + Outflow
+		* Salaray
+		* Gift(recieve)
+		* Investment return
+		* Food
+	* Budget plans: Spend_Category + allocation History:
+		* Monthly spending by category. 
+		* Meeting or failing goals + why?
 # Milestone 4: Budget Analytics & Visualization
 ## Objectives:
 * Show budget summaries and charts
@@ -55,22 +54,13 @@
     * Pie chart (spending by category)
     * Bar/Line chart (expenses over time)
 * Display charts in a responsive dashboard
-## Notes:
-* Plan which charts to display and how and place it here
-    * Main things/important things, categories
-
 # Milestone 5: UI Styling & User Experience
 ## Objectives:
 * Improve look and feel using modern UI frameworks
 ## Action Points:
-* Choose a design library (e.g., Material-UI, Tailwind CSS)
+* Using Material-UI framework
 * Style forms, buttons, tables, and charts
-* Make layout responsive for mobile and tablet views (optional)
-## Notes:
-* Pick a UI framework now
-* Start planning a design philosophy and place it here
-* Some interface to copy?
- 
+* Make layout responsive for mobile and tablet views (optional) 
 # Milestone 6: Testing & Deployment
 ## Objectives:
 * Ensure code is bug-free and deploy the app
