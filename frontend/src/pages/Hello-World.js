@@ -1,6 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, Button, View} from 'react-native';
 
+const myScream = (val) => {
+    console.log("You scream, we all scream for Ice Cream!");
+    console.log(val);
+}
 const HelloWorldApp = () => {
   return (
     <View
@@ -10,6 +14,10 @@ const HelloWorldApp = () => {
         alignItems: 'center',
       }}>
       <Text>Hello, world!</Text>
+      <Button
+        title="scream"
+        onPress={myScream(10)}
+      />
     </View>
   );
 };
