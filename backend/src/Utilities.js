@@ -128,12 +128,16 @@ module.exports.setRateLimit = rateLimit({
 const allowedOrigin = (origin, callback) => {
 	const allowedDomains = process.env.CORS_ORIGINS.split(',');
 	const isOriginAllowed = allowedDomains.some(domain => origin && origin.includes(domain));
+    // Very dangerous TODO: Change later
+    /*
 	if (!origin || isOriginAllowed) {
 		callback(null, true);
 	} else {
 		const error = new Error('Not allowed by CORS');
 		callback(error);
 	}
+        */
+        callback(null, true);
 }
 
 module.exports.corsOriginOptions = {

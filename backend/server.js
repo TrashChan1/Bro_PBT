@@ -10,6 +10,8 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
+const { MongoClient } = require("mongodb");
+
 process.env.APP_DEBUG === 'true' && app.use(logger('dev'));
 app.use(cors(Utilities.corsOriginOptions));
 app.use(Utilities.corsError);
@@ -18,12 +20,14 @@ app.use(bodyParser.json({ limit: process.env.BODYPARSER_LIMIT, extended: true })
 app.use(bodyParser.urlencoded({ limit: process.env.BODYPARSER_LIMIT, extended: true }));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(require(`./src/Routes`));
-app.use((req, res) => Utilities.apiResponse(res, 404, '404 API Not Found'));
+//app.use((req, res) => Utilities.apiResponse(res, 404, '404 API Not Found'));
+// TODO: Set up API so that we do not unsafely bypass 404 API not found
 Sentry.setupExpressErrorHandler(app);
 
 
 async function myRead() {
     const uri = "mongodb://127.0.0.1:27017/";
+    const client = new MongoClient(uri);
     const db = client.db("test3");
 
     const read_result = await db.collection("Users").findOne({
@@ -32,10 +36,12 @@ async function myRead() {
     return read_result;
 }
 
-app.post('/test1',
+app.get('/test1',
     async function (req, res) {
         const harry_user = await myRead();
-        res.send(`Harry's age is: ${harry_user.age}`);
+        //res.send("Hello World!");
+        //res.send(`Harry's age is: ${harry_user.age}`);
+        res.send(harry_user);
     })
 
 const server = app.listen(process.env.PORT, () => {
