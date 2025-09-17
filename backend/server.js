@@ -21,6 +21,23 @@ app.use(require(`./src/Routes`));
 app.use((req, res) => Utilities.apiResponse(res, 404, '404 API Not Found'));
 Sentry.setupExpressErrorHandler(app);
 
+
+async function myRead() {
+    const uri = "mongodb://127.0.0.1:27017/";
+    const db = client.db("test3");
+
+    const read_result = await db.collection("Users").findOne({
+        name: "Harry"
+    });
+    return read_result;
+}
+
+app.post('/test1',
+    async function (req, res) {
+        const harry_user = await myRead();
+        res.send(`Harry's age is: ${harry_user.age}`);
+    })
+
 const server = app.listen(process.env.PORT, () => {
 	console.log(`********** Server is running on  http://localhost:${server.address().port}  **********`);
 }).on('error', (error) => {
