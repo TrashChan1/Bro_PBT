@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 
 let banana: number = 5;
 var coins = 12;
@@ -14,6 +14,7 @@ export default function Index() {
       }}
     >
       <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Button title="Click Me" onPress={() => console.log("Button pressed!")} />
     </View>
   );
 }
