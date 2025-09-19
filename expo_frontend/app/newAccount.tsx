@@ -1,5 +1,4 @@
 import { Text, View, Button, StyleSheet } from "react-native";
-import { Link } from 'expo-router';
 
 async function getData() {
   const url = "http://localhost:8086/test1";
@@ -19,12 +18,8 @@ async function getData() {
 export default function Index() {
   return (
       <View style={styles.container}>
-      <Text style={styles.text}>Basic sign in screen</Text>
+      <Text style={styles.text}>Basic account creation screen</Text>
       <Button title="Click Me" onPress={() => getData()} />
-      <Link href="/newAccount" style={styles.link}>
-        Or create a new account
-      </Link>
-
     </View>
   );
 }
@@ -47,14 +42,7 @@ const styles = StyleSheet.create({
 },
 
  text: {
-	fontSize: 20,
 	color: 'white',
 },
-
- link: {
-    fontSize: 20,
-    textDecorationLine: 'underline',
-    color: '#fff',
-  },
 
 });
