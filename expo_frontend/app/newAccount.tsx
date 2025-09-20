@@ -1,4 +1,4 @@
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
 async function getData() {
   const url = "http://localhost:8086/test1";
@@ -11,20 +11,30 @@ async function getData() {
     const result = await response.json();
     console.log(`Harry's age is ${result.age}`);
   } catch (error) {
-    console.error(error.message);
+    //console.error(error.message);
   }
 }
 
 export default function Index() {
   return (
       <View style={styles.container}>
-      <Text style={styles.text}>Basic account creation screen</Text>
-      <Button title="Click Me" onPress={() => getData()} />
+      <Text style={styles.title}>Let's Get Started</Text>
+      <Text style={styles.subtitle}>Create account to start budgeting</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        placeholderTextColor="#999"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#999"
+        secureTextEntry
+      />
+      <Button title="Create Account" onPress={() => getData()} />
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
  container: {
@@ -32,13 +42,31 @@ const styles = StyleSheet.create({
 	justifyContent: "center",
 	alignItems: "center",
 	backgroundColor: 'black',
+   padding: 20,
 },
 
- input: {
-    	height: 40,
-    	margin: 12,
-    	borderWidth: 1,
-    	padding: 10,
+title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 10,
+},
+
+subtitle: {
+    fontSize: 18,
+    color: "white",
+    marginBottom: 20,
+},
+
+input: {
+    height: 40,
+    width: "80%",
+    marginVertical: 10,
+    borderWidth: 1,
+    borderColor: "white",
+    paddingHorizontal: 10,
+    color: "white",
+    borderRadius: 5,
 },
 
  text: {
