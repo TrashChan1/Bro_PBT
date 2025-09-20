@@ -2,9 +2,15 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerStyle: { backgroundColor: "black" },  
+        headerTintColor: "white",                  
+        headerTitleStyle: { fontWeight: "bold" },   
+      }}
+    >
       <Stack.Screen name="index" options={{ title: 'Login' }} />
-      <Stack.Screen name="newAccount" options={{ title: 'new_Account' }} />
+      <Stack.Screen name="newAccount" options={{ title: 'New Account' }} />
     </Stack>
   );
 }
