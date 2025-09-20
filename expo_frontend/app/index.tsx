@@ -1,4 +1,4 @@
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 import { Link } from 'expo-router';
 
 async function getData() {
@@ -12,15 +12,27 @@ async function getData() {
     const result = await response.json();
     console.log(`Harry's age is ${result.age}`);
   } catch (error) {
-    console.error(error.message);
+    //console.error(error.message);
   }
 }
 
 export default function Index() {
   return (
       <View style={styles.container}>
-      <Text style={styles.text}>Basic sign in screen</Text>
-      <Button title="Click Me" onPress={() => getData()} />
+      <Text style={styles.title}>Welcome to SmartBudget</Text>
+      <Text style={styles.subtitle}>Please sign in</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        placeholderTextColor="#999"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#999"
+        secureTextEntry
+      />
+      <Button title="Sign In" onPress={() => getData()} />
       <Link href="/newAccount" style={styles.link}>
         Or create a new account
       </Link>
@@ -29,32 +41,44 @@ export default function Index() {
   );
 }
 
-
-
 const styles = StyleSheet.create({
  container: {
  	flex: 1,
 	justifyContent: "center",
 	alignItems: "center",
 	backgroundColor: 'black',
+  padding: 20,
 },
-
+ 
  input: {
-    	height: 40,
-    	margin: 12,
-    	borderWidth: 1,
-    	padding: 10,
+    height: 40,
+    width: "80%",
+    marginVertical: 10,
+    borderWidth: 1,
+    borderColor: "white",
+    paddingHorizontal: 10,
+    color: "white",
+    borderRadius: 5,
 },
 
- text: {
-	fontSize: 20,
-	color: 'white',
-},
+title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 10,
+  },
+
+ subtitle: {
+    fontSize: 18,
+    color: "white",
+    marginBottom: 20,
+  },
 
  link: {
     fontSize: 20,
     textDecorationLine: 'underline',
     color: '#fff',
+    marginTop: 20,
   },
 
 });
