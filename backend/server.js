@@ -37,6 +37,7 @@ mongoose.connect(config.mongoURI, {useNewUrlParser:true,
                 .then(() => console.log('MongoDB Connected'))
                 .catch(err => console.log(err));
                 */
+/*
 async function myRead() {
     const uri = "mongodb://127.0.0.1:27017/";
     const client = new MongoClient(uri);
@@ -47,7 +48,8 @@ async function myRead() {
     });
     return read_result;
 }
-
+*/
+/*
 app.get('/test1',
     async function (req, res) {
         const harry_user = await myRead();
@@ -55,7 +57,7 @@ app.get('/test1',
         //res.send(`Harry's age is: ${harry_user.age}`);
         res.send(harry_user);
     })
-
+*/
 app.get(('/test2',
     CrudController.getUsers));
 

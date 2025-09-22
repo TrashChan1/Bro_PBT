@@ -8,11 +8,10 @@ class CrudController {
 
 			const validattionSchema = z.object({
 				name: z.string().min(3).max(50),
-				email: z.string().email(),
 				password: z.string().min(6),
 			});
 
-			const { name, email, password } = validattionSchema.parse(req.body);
+			const { name, password } = validattionSchema.parse(req.body);
 
 			const doesExist = await User.findOne({ email: req.body.email }, { email: 1 })
 			if (doesExist) return Utilities.apiResponse(res, 422, 'Email is already been registered')
@@ -28,7 +27,7 @@ class CrudController {
 
 	async getUser(req, res) {
 		try {
-			const user = await User.findOne({ _id: req.params.userId }, { email: 1, name: 1 })
+			const user = await User.findOne({ _id: req.params.userId }, { name: 1 })
 			return Utilities.apiResponse(res, 200, 'Get User Successfully', user)
 		} catch (error) {
 			return Utilities.apiResponse(res, 500, error)
@@ -40,7 +39,7 @@ class CrudController {
 			const options = {
 				page: req.query?.page || 1,
 				limit: req.query?.limit || 10,
-				select: 'name email'
+				select: 'name '
 			};
 			const users = await User.paginate({}, options)
 			return Utilities.apiResponse(res, 200, 'Get Users Successfully', users)
