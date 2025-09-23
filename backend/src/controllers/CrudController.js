@@ -13,10 +13,10 @@ class CrudController {
 
 			const { name, password } = validattionSchema.parse(req.body);
 
-			const doesExist = await User.findOne({ email: req.body.email }, { email: 1 })
-			if (doesExist) return Utilities.apiResponse(res, 422, 'Email is already been registered')
+			const doesExist = await User.findOne({ name: req.body.name }, { name: 1 })
+			if (doesExist) return Utilities.apiResponse(res, 422, 'username is already been registered')
 
-			const user = new User({ name, email, password })
+			const user = new User({ name, password })
 			await user.save()
 
 			return Utilities.apiResponse(res, 200, 'User Created Successfully!')
@@ -52,16 +52,15 @@ class CrudController {
 		try {
 			const validattionSchema = z.object({
 				name: z.string().min(3).max(50),
-				email: z.string().email(),
 				password: z.string().min(6),
 			});
 
-			const { name, email, password } = validattionSchema.parse(req.body);
+			const { name, password } = validattionSchema.parse(req.body);
 
-			const doesExist = await User.findOne({ email: req.body.email }, { email: 1 })
-			if (doesExist) return Utilities.apiResponse(res, 422, 'Email is already been registered')
+			const doesExist = await User.findOne({ name: req.body.name }, { name: 1 })
+			if (doesExist) return Utilities.apiResponse(res, 422, 'username is already been registered')
 
-			await User.findOneAndUpdate({ _id: req.body.user_id }, { name, email, password })
+			await User.findOneAndUpdate({ _id: req.body.user_id }, { name, password })
 			return Utilities.apiResponse(res, 200, 'User Has Been Updated Successfully')
 		} catch (error) {
 			return Utilities.apiResponse(res, 500, error)

@@ -6,21 +6,21 @@ class AuthController {
 
 	async login(req, res) {
 		try {
-			const validattionSchema = z.object({
-				email: z.string().email(),
+			const validationSchema = z.object({
+				name: z.string().min(3).max(50),
 				password: z.string(),
 			});
 
-			const { email, password } = validattionSchema.parse(req.body);
+			const { name, password } = validationSchema.parse(req.body);
 
-			const user = await User.findOne({ email }, { email: 1, _id: 1 });
+			const user = await User.findOne({ name }, { password: 1 });
 			if (!user) {
 				return Utilities.apiResponse(res, 422, 'User Not Registered');
 			}
 
 			const isMatch = await user.isValidPassword(password);
 			if (!isMatch) {
-				return Utilities.apiResponse(res, 422, 'Email or Password not valid');
+				return Utilities.apiResponse(res, 422, 'Username or Password not valid');
 			}
 
 			const accessToken = await Utilities.signAccessToken(user._doc);
@@ -34,25 +34,24 @@ class AuthController {
 	async signup(req, res) {
 		try {
 
-			const validattionSchema = z.object({
+			const validationSchema = z.object({
 				name: z.string().min(3).max(50),
-				email: z.string().email(),
 				password: z.string().min(6),
 			});
 
-			const { name, email, password } = validattionSchema.parse(req.body);
+			const { name, password } = validationSchema.parse(req.body);
 
-			const doesExist = await User.findOne({ email }, { _id: 1 });
+			const doesExist = await User.findOne({ name }, { _id: 1 });
 			if (doesExist) {
-				return Utilities.apiResponse(res, 422, 'Email is already registered');
+				return Utilities.apiResponse(res, 422, 'userName is already registered');
 			}
 
-			const user = new User({ name, email, password });
+			const user = new User({ name, password });
 			const savedUser = await user.save();
 			const data = {
 				_id: savedUser._id,
 				name: savedUser.name,
-				email: savedUser.email,
+                                //password: savedUser.password,
 			};
 
 			Utilities.apiResponse(res, 200, 'User Created Successfully!', {

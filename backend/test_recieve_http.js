@@ -1,6 +1,6 @@
 const { body,validationResult } = require("express-validator");
 
-const _ = body("email").custom((value) => {
+const _ = body("name").custom((value) => {
     console.log("lambda entered");
     console.log(value);
 });

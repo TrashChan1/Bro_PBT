@@ -1,39 +1,50 @@
 import { Text, View, Button, StyleSheet, TextInput } from "react-native";
+import React, {useState} from "react";
 
-async function getData() {
-  const url = "http://localhost:8086/test1";
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+const url = "http://localhost:8086/api/v1/signup";
+async function signUp(name, pwd) {
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify({name: name, password: pwd}),
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        console.log(`${name} signup returned OK.`);
+    } catch (error) {
+        console.error(error.message);
     }
-
-    const result = await response.json();
-    console.log(`Harry's age is ${result.age}`);
-  } catch (error) {
-    //console.error(error.message);
-  }
 }
 
 export default function Index() {
-  return (
-      <View style={styles.container}>
-      <Text style={styles.title}>Let's Get Started</Text>
-      <Text style={styles.subtitle}>Create account to start budgeting</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        placeholderTextColor="#999"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#999"
-        secureTextEntry
-      />
-      <Button title="Create Account" onPress={() => getData()} />
-    </View>
-  );
+        const [uNameInput, setUNameInput] = useState('');
+        const [pwdInput, setPwdInput] = useState('');
+        return (
+            <View style={styles.container}>
+            <Text style={styles.title}>Let's Get Started</Text>
+            <Text style={styles.subtitle}>Create account to start budgeting</Text>
+            <TextInput
+            style={styles.input}
+            value={uNameInput}
+            onChangeText={text => setUNameInput(text)}
+            placeholder="Username"
+            placeholderTextColor="#999"
+            />
+            <TextInput
+            style={styles.input}
+            value={pwdInput}
+            onChangeText={text => setPwdInput(text)}
+            placeholder="Password"
+            placeholderTextColor="#999"
+            secureTextEntry
+            />
+            <Button title="Create Account" onPress={() => signUp(uNameInput, pwdInput)} />
+            </View>
+        );
 }
 
 const styles = StyleSheet.create({
