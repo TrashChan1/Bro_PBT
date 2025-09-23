@@ -30,7 +30,7 @@ const apiResponse = (res, status, message, data) => {
 		newMessage = message?.message || message;
 	} else {
 		newMessage = message.message ? 'Something went wrong, please try again later' : message;
-		responseData = responseData ? encrypt(responseData) : [];
+		//responseData = responseData ? encrypt(responseData) : [];
 		if (message?.message) Sentry.captureException(message);
 	}
 

@@ -18,6 +18,40 @@ async function getData() {
 }
 */
 
+async function makeAuthenticatedRequest(endpoint, method = 'GET', body = null, accessToken) {
+    try {
+        if (!accessToken) {
+            throw new Error('No access token available. Please login first.');
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        };
+        const config = {
+            method,
+            headers,
+        };
+        if (body) {
+            config.body = JSON.stringify(body);
+        }
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+
+        if (!response.ok) {
+            if (response.status === 401) {
+                // Token might be expired or invalid
+                localStorage.removeItem('accessToken');
+                accessToken = null;
+                throw new Error('Unauthorized. Please login again.');
+            }
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Request error:', error.message);
+        throw error;
+    }
+}
+
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 const url = "http://localhost:8086/api/v1/login";
@@ -31,7 +65,9 @@ async function login(name, pwd) {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-        console.log(`${name} signin returned OK.`);
+        const data = await response.json();
+        console.log(data);
+        return data.accessToken;
     } catch (error) {
         console.error(error.message);
     }

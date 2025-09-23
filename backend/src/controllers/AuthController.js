@@ -24,7 +24,8 @@ class AuthController {
 			}
 
 			const accessToken = await Utilities.signAccessToken(user._doc);
-			Utilities.apiResponse(res, 200, 'User Loggedin Successfully!', { ...user._doc, accessToken });
+			//Utilities.apiResponse(res, 200, 'User Loggedin Successfully!', { ...user._doc, accessToken });
+			Utilities.apiResponse(res, 200, 'User Loggedin Successfully!', { accessToken });
 
 		} catch (error) {
 			Utilities.apiResponse(res, 500, error);
